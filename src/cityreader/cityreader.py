@@ -81,7 +81,7 @@ for c in cities:
 
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities):
-    within = []
+    # within = []
 
     max_lat = max(lat1, lat2)
     min_lat = min(lat1, lat2)
@@ -89,11 +89,21 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities):
     max_lon = max(lon1, lon2)
     min_lon = min(lon1, lon2)
 
-    for city in cities:
-        if (float(min_lat) <= float(city.lat) and float(max_lat) >= float(city.lat)):
-            if (float(min_lon) <= float(city.lon) and float(max_lon) >= float(city.lon)):
-                within.append(city)
+    # for city in cities:
+    #     if (float(min_lat) <= float(city.lat) and float(max_lat) >= float(city.lat)):
+    #         if (float(min_lon) <= float(city.lon) and float(max_lon) >= float(city.lon)):
+    #             within.append(city)
 
+    def check_lat(city):
+        if (float(min_lat) <= float(city.lat) and float(max_lat) >= float(city.lat)):
+            return True
+
+    def check_lon(city):
+        if (float(min_lon) <= float(city.lon) and float(max_lon) >= float(city.lon)):
+            return True
+
+    within = [city for city in cities if check_lat(
+        city) and check_lon(city)]
     return within
 
 
